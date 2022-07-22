@@ -3,9 +3,9 @@ import random
 
 def rps():
     
-    selection = ['Rock', 'Paper', 'Scissors']
+    selection = 'RPS'
     rules = {'R': ['S', 'Rock'], 'P': ['R', 'Paper'], 'S':['P', 'Scissors']}
-    comp_choice = random.choice(selection)[0]
+    comp_choice = random.choice(selection)
 
     usr_choice = input('What do you choose? Rock - R, Paper - P or Scissors - S:')
 
@@ -23,4 +23,6 @@ def rps():
     play_again = input('Play again? Yes - Y')
     if play_again.upper() == 'Y':
         rps()
+    else:
+        exit()
 rps()
