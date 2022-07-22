@@ -24,11 +24,23 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
     print("Welcome to Treasure Island.")
     print("Your mission is to find the treasure.") 
 
-    choice_1 = input('Left(L) or Right(R):')
+    choice_1 = input('You\'re at a crossroad, Left(L) or Right(R):')
     if choice_1.upper() != 'L':
         print('You\'ve fell into a hole\nGAME OVER')
-        exit()
     else:
-        choice_2 = input('Swim(S) or Wait(W):')
+        choice_2 = input('You\'ve come to a lake, do you swim(S) or wait(W):')
+        if choice_2.upper() == 'W':
+            choice_3 = input('You\'ve arrived at an island unharmed. There is house with 3 doors.\nWhich door do you take? Yellow - (Y), Red - (R), or Blue- (B)')
+            if choice_3.upper() == 'Y':
+                print('You enter the room and are teleported to safety with nothing.')
+            elif choice_3.upper() == 'R':
+                print('You enter the room and are teleported to safety with all the treasures of the island.')
+            elif choice_3.upper() == 'B':
+                print('You enter the room and are mauled to death.')
+            else:   
+                print('You\'ve decided to do nothing and stood till you died of dehydration.')
+        else:
+            print('You\'ve decided to swim and have drowned... silly really.')
+    exit()
 treasure_island()
 
