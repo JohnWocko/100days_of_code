@@ -14,12 +14,12 @@ def rps():
         rps()
         return True
     else:
-        print(comp_choice)
         if usr_choice.upper() in rules:
             if rules[usr_choice.upper()][0] == comp_choice:
                 print(f'You Won! you chose {rules[usr_choice.upper()][1]} which beats {rules[comp_choice][1]}')
             elif rules[comp_choice][0] == usr_choice.upper():
                 print(f'You lost! Computer chose {rules[comp_choice][1]} which beats your {rules[usr_choice.upper()][1]}')
+    
     play_again = input('Play again? Yes - Y')
     if play_again.upper() == 'Y':
         rps()
