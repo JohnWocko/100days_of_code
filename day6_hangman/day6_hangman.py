@@ -4,37 +4,89 @@ try:
     with open('day6_hangman\words.txt', 'r') as file:
         words = file.read().split('\n')
 except:
-    words = ['hello','Killero']
+    words = ['hello', 'Killero']
+
+HANGMANPICS = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
 
 
 def get_word():
     word = random.choice(words)
-    if word != ' ': 
+    if word != ' ':
         return word.lower()
     else:
         get_word()
 
-def display(word, guessed = []):
+
+def display(word, guessed=[], guesses=0):
     count = 0
+    print(HANGMANPICS[guesses])
     for letter in word:
         if letter not in guessed:
-            print(' - ', end = '')
+            print(' - ', end='')
         else:
-            print(f' {letter} ', end = '')
-            count+=1
+            print(f' {letter} ', end='')
+            count += 1
     print('\n')
-    if count == len(word):
+    if count >= 6:
         print('All letters guessed')
         return True
-    else:
-        return False
+
 
 def get_user_guess():
     try:
-        user_guess = input('Please enter a single character:')
+        user_guess = input('\nPlease enter a single character:')
         if len(user_guess) > 1:
-            print('More than one character inputted, try again')
-            get_user_guess()
+            print('More than one character inputted, first one taken as guess')
+            return user_guess[0].lower()
         else:
             print(f'Guess is : {user_guess}')
             return user_guess.lower()
@@ -42,32 +94,46 @@ def get_user_guess():
         print('Input error, try again')
         get_user_guess()
 
+
 def check_letter(letter, word):
-    print('Right' if letter in word else 'Wrong')
+
+    print(f'{letter} is Right' if letter in word else f'{letter} is Wrong')
     return (letter in word)
 
+
 def main_loop():
-    guessed = []
+    guessed_correctly = []
+    guessed_incorrectly = []
     won = False
     chosen_word = get_word()
-    guesses = len(chosen_word)
+    guesses = 0
 
-    while not won and guesses > 0:
-        print(guesses)
-        won = display(chosen_word, guessed)
-        user_guess = get_user_guess()
-        if check_letter(user_guess, chosen_word):
-            guessed.extend(user_guess)
+    while not won or guesses <= 6:
+        won = display(chosen_word, guessed_correctly, guesses)
+        #print(f'Total incorrect guesses: {guesses}\tCorrect letters guessed: {guessed_correctly}\tIncorrect Guesses: {guessed_incorrectly}')
+            
+        if won:
+            print('Well done!')
+            break
+
         else:
-            guesses -=1
-    
-    if won:
-        print('Well done!')
-    else:
-        print(f'Sorry, word was {chosen_word}')
+            user_guess = get_user_guess()
+            if check_letter(user_guess, chosen_word) and user_guess not in guessed_correctly:
+                guessed_correctly.extend(user_guess)
+            elif user_guess not in guessed_incorrectly and user_guess not in guessed_correctly:
+                guessed_incorrectly.extend(user_guess)
+                guesses += 1
+            else:
+                print('You\'ve already inputted this guess.')
 
+        if guesses >= 6:
+            print(
+                f'\n---------------- GAME OVER ----------------\nSorry, word was {chosen_word}')
+            display(chosen_word, guessed_correctly, guesses)
+            break
+        print(f'Total incorrect guesses: {guesses}\tCorrect letters guessed: {guessed_correctly}\tIncorrect Guesses: {guessed_incorrectly}')
+        
 
 
 if __name__ == '__main__':
     main_loop()
-
