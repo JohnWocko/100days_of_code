@@ -1,6 +1,44 @@
-def shift(s, n):
-    return ''.join(chr((ord(char) - n) % 26 + 97)for char in s)
-def unshift(s, n):
-    return ''.join(chr((ord(char) + n) % 26 + 97)for char in s)
+import string
+alphabet = [ * string.ascii_letters + string.ascii_letters]
 
-print(shift('Hello my name is Bob',9), unshift('lovvyxwixxkwoxscxfyl',9))
+def encrypt(plain_text, shift_amount):
+    cipher_text = ""
+    for letter in plain_text:
+        if letter == ' ':
+            cipher_text += ' '
+        else:
+            position = alphabet.index(letter)
+            new_position = position + shift_amount
+            new_letter = alphabet[new_position]
+            cipher_text += new_letter
+    return cipher_text
+
+def decrypt(cipher_text, shift_amount):
+    plain_text = ""
+    for letter in cipher_text:
+        if letter == ' ':
+            plain_text += ' '
+        else:
+            position = alphabet.index(letter)
+            new_position = position - shift_amount
+            new_letter = alphabet[new_position]
+            plain_text += new_letter
+    return plain_text
+
+
+print(encrypt('John', 6), decrypt(encrypt('john', 6),6))
+
+
+
+direction = input('Type \'encode\' to encrypt, type \'decode\' for decrypt:\n')
+text = input('Please type your message to be processed:\n')
+shift = int(input('Type the shift number:\n'))
+
+if direction.lower() == 'encode':
+    print(encrypt(text, shift))
+elif direction.lower()[0] =='d':
+    print(decrypt(text, shift))
+else:
+    print('Invalid operation')
+    exit()
+

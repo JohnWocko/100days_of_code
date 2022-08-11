@@ -1,10 +1,10 @@
 import random
 
-#try:
-   # with open('day6_hangman\words.txt', 'r') as file:
-    #    words = file.read().split('\n')
-#except:
-words = ['hello', 'Killero']
+try:
+    with open('day6_hangman\words.txt', 'r') as file:
+        words = file.read().split('\n')
+except:
+    words = ['hello', 'Killero']
 
 HANGMANPICS = ['''
   +---+
