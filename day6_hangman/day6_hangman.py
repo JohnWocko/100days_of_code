@@ -1,10 +1,10 @@
 import random
 
-try:
-    with open('day6_hangman\words.txt', 'r') as file:
-        words = file.read().split('\n')
-except:
-    words = ['hello', 'Killero']
+#try:
+   # with open('day6_hangman\words.txt', 'r') as file:
+    #    words = file.read().split('\n')
+#except:
+words = ['hello', 'Killero']
 
 HANGMANPICS = ['''
   +---+
@@ -78,7 +78,7 @@ def display(word, guessed=[], guesses=0):
     print('\n')
     if count >= 6:
         print('All letters guessed')
-        return True
+
 
 
 def get_user_guess():
@@ -102,6 +102,7 @@ def check_letter(letter, word):
 
 
 def main_loop():
+    #Could use set so elements won't be repeated?
     guessed_correctly = []
     guessed_incorrectly = []
     won = False
@@ -109,7 +110,8 @@ def main_loop():
     guesses = 0
 
     while not won or guesses <= 6:
-        won = display(chosen_word, guessed_correctly, guesses)
+        won = True if set(guessed_correctly) ==  set(chosen_word) else False
+        display(chosen_word, guessed_correctly, guesses)
         #print(f'Total incorrect guesses: {guesses}\tCorrect letters guessed: {guessed_correctly}\tIncorrect Guesses: {guessed_incorrectly}')
             
         if won:
