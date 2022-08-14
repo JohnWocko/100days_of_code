@@ -2,38 +2,51 @@ import string
 
 def caesar(start_text, shift_amount, direction):
     alphabet = [ * string.ascii_letters + string.ascii_letters]
-    
+    if int(shift_amount) and shift_amount > 26:
+        shift_amount = shift_amount % 26
     if direction.lower() == 'encode' and int(shift_amount):
         cipher_text = ""
         for letter in start_text:
-            if letter == ' ':
-                cipher_text += ' '
-            else:
+            if letter in alphabet:
                 position = alphabet.index(letter)
                 new_position = position + shift_amount
                 new_letter = alphabet[new_position]
                 cipher_text += new_letter
+            else:
+                cipher_text += letter
+    
         return cipher_text
     
     elif direction.lower()[0] =='d'and int(shift_amount):
         plain_text = ""
         for letter in start_text:
-            if letter == ' ':
-                plain_text += ' '
-            else:
+            if letter in alphabet:
                 position = alphabet.index(letter)
                 new_position = position - shift_amount
                 new_letter = alphabet[new_position]
                 plain_text += new_letter
+            else:
+                plain_text += letter
         return plain_text
     else:
         print('Invalid operation')
 
+def main():
+    finished = False
+    while not finished:
+        direction = input('Type \'encode\' to encrypt, type \'decode\' for decrypt:\n')
+        text = input('Please type your message to be processed:\n')
+        shift = int(input('Type the shift number:\n'))
+
+        print(caesar(text, shift, direction))
+
+        user_input = input('Exit? Y/N')
+        if user_input.lower() == 'y':
+            finished = True
+            break
+        else:
+            continue
 
 
-direction = input('Type \'encode\' to encrypt, type \'decode\' for decrypt:\n')
-text = input('Please type your message to be processed:\n')
-shift = int(input('Type the shift number:\n'))
-
-print(caesar(text, shift, direction))
-
+if __name__ == '__main__':
+    main()
