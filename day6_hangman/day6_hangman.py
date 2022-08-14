@@ -1,7 +1,7 @@
 import random
 
 try:
-    with open('day6_hangman\words.txt', 'r') as file:
+    with open('C:\\Users\\jon_w\\100days_of_code\\day6_hangman\\words.txt', 'r') as file:
         words = file.read().split('\n')
 except:
     words = ['hello', 'Killero']
