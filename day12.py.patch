@@ -2,52 +2,110 @@
 
 --- a/day12.py
 +++ b/day12.py
-@@ -4,28 +4,39 @@
+@@ -4,9 +4,9 @@
  from replit import clear
  
  def generate_random_account():
--    '''Returns data of a random account from game_data.py.'''
-+    """Returns data of a random account from game_data.py."""
-     return random.choice(data)
+-    """
+-    Returns data of a random account from game_data.py.
+-    
++    """Returns data of a random account from game_data.py.
++
++
+     :returns: random account from game_data.py.
  
+     """
+@@ -15,9 +15,9 @@
  
  
  def format_data(data):
--    '''Formats the data from account into a readable structure that can be compared. '''
+-    """
+-    Formats the data from account into a readable structure that can be compared. 
 +    """Formats the data from account into a readable structure that can be compared.
-+
+ 
 +    :param data: 
-+
-+    """
-     return f"{data['name']} is a {data['description']} from {data['country']}."
+     :returns: formatted string of account data.
+ 
+     """
+@@ -26,22 +26,22 @@
  
  
  def comparison(account_1=0, account_2=0):
--    '''Compares two dictionary values representing followers on instagram.
--    
+-    """
+-    Compares two dictionary values representing followers on instagram.
 +    """Compares two dictionary values representing followers on instagram.
+     
+     Parameters:
+     ----------
+-    :param account_1 (dict):  (Default value = 0)
++
++    :param account_1: dict):  (Default value = 0)
+         First account to be compared.
+-
+-    :param account_2 (dict):  (Default value = 0)
++    :param account_2: dict):  (Default value = 0)
+         FirsSecondt account to be compared against the first.
+-
++    
+     Returns:
+     -------
+-    :returns bool: Whether value of the corresponding follower 
++    :returns: bool: Whether value of the corresponding follower
+         key of the first account is greater than second account.
+         Or whether the data passed are dictionaries.
++
+     """
  
-+    :param account_1:  (Default value = 0)
-+    :param account_2:  (Default value = 0)
- 
--    '''
-+    """
      if type(account_1) == dict and type(account_2) == dict:
-         return account_1['follower_count'] >= account_2['follower_count']
-     else:
-         return False
+@@ -52,34 +52,34 @@
+ 
  
  def get_user_guess(account_1, account_2):
-+    """
+-    """
+-    Gets the user input as to which account they think has more followers.
+-    It is passed the two accounts from which the name and description is 
+-    presented to the user. 
++    """Gets the user input as to which account they think has more followers.
++    It is passed the two accounts from which the name and description is
++    presented to the user.
+     
+     From here the user is asked to choose one.
+     Based on which account they've chosen, that is the first account to
+     be compared against the other. I've done this to simplify the process.
+-    The account_1 parameter for the comparison function will be used to be 
++    The account_1 parameter for the comparison function will be used to be
+     represent either the first account of the game, or user inputs.
+-
++    
+     The function then returns a bool value of the user inputted comparison,
+     or failing that restarts the process.
+-
+-
++    
++    
+     Parameters:
+     ----------
+-    :param account_1 (dict):  (Default value = 0)
 +
-+    :param account_1: 
-+    :param account_2: 
++    :param account_1: dict):  (Default value = 0)
+         First account to be compared.
+-
+-    :param account_2 (dict):  (Default value = 0)
++    :param account_2: dict):  (Default value = 0)
+         FirsSecondt account to be compared against the first.
+-
++    
+     Returns:
+     -------
+-    :returns bool: Whether value of the corresponding follower 
++    :returns: bool: Whether value of the corresponding follower
+         key of the first account is greater than second account.
+         Or whether the data passed are dictionaries.
 +
-+    """
-     if type(account_1) == dict and type(account_2) == dict:
-         print(
-             f'{logo}\n\n\nCompare A:\t{format_data(account_1)} {vs} \nAgainst B:\t{format_data(account_2)}')
-@@ -50,6 +61,7 @@
+     """
+ 
+ 
+@@ -107,6 +107,7 @@
  # Check if user is correct.
  
  def main_loop():
