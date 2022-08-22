@@ -9,14 +9,19 @@ def main():
         difficulty = difficulty_settings[user_dif.upper()]
         user_input = -1
         tries = 0
-        print(difficulty)
+        guesses = []
+
         while user_input != random_num and tries <= difficulty:
             user_input = int(input('Please enter your guess:\n'))
-            print(tries, difficulty)
+            guesses.append(user_input)
+            guesses.sort()
+
+            print(tries, difficulty, guesses)
             if user_input > random_num:
                 print('Incorrect! - Too high')
                 tries+=1
                 continue
+            
             elif user_input < random_num:
                 print('Incorrect! - Too low')
                 tries+=1
