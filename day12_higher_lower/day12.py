@@ -14,7 +14,6 @@ def generate_random_account():
     return random.choice(data)
 
 
-
 def format_data(input_data):
     """
     Formats the data from account into a readable structure that can be compared.
@@ -31,10 +30,10 @@ def comparison(account_1=0, account_2=0):
 
     Parameters:
     ----------
-    :param account_1 (dict):  (Default value = 0)
+    :param: account_1 (dict):  (Default value = 0)
         First account to be compared.
 
-    :param account_2 (dict):  (Default value = 0)
+    :param: account_2 (dict):  (Default value = 0)
         FirsSecondt account to be compared against the first.
 
     Returns:
@@ -67,15 +66,15 @@ def get_user_guess(account_1, account_2):
 
     Parameters:
     ----------
-    :param account_1 (dict):  (Default value = 0)
+    :param: account_1 (dict):  (Default value = 0)
         First account to be compared.
 
-    :param account_2 (dict):  (Default value = 0)
+    :param: account_2 (dict):  (Default value = 0)
         FirsSecondt account to be compared against the first.
 
     Returns:
     -------
-    :returns bool: Whether value of the corresponding follower
+    :returns: bool: Whether value of the corresponding follower
         key of the first account is greater than second account.
         Or whether the data passed are dictionaries.
     """
